@@ -1,0 +1,69 @@
+{
+    "properties": {
+        "select1": {
+            "type": "string",
+            "default": "option1A",
+            "enum": [
+                "option1A"
+            ]
+        }
+    },
+    "dependencies": {
+        "select1": {
+            "oneOf": [
+                {
+                    "type": "object",
+                    "properties": {
+                        "option1A": {
+                            "type": "object",
+                            "properties": {
+                                "select2": {
+                                    "type": "string",
+                                    "default": "option2A",
+                                    "enum": [
+                                        "option2A"
+                                    ]
+                                }
+                            },
+                            "dependencies": {
+                                "select2": {
+                                    "oneOf": [
+                                        {
+                                            "type": "object",
+                                            "properties": {
+                                                "option2A": {
+                                                    "required": [
+                                                        "val2A"
+                                                    ],
+                                                    "type": "object",
+                                                    "properties": {
+                                                        "val2A": {
+                                                            "type": "string"
+                                                        }
+                                                    }
+                                                },
+                                                "select2": {
+                                                    "const": "option2A"
+                                                }
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            "required": [
+                                "select2"
+                            ]
+                        },
+                        "select1": {
+                            "const": "option1A"
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "required": [
+        "select1"
+    ],
+    "$schema": "http://json-schema.org/draft-07/schema#"
+}
